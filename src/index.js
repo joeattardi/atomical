@@ -1,10 +1,11 @@
 import styles from '../css/atomical.css';
 
-import { render } from 'mustache';
+import Mustache from 'mustache';
 
 import calendarTemplate from './templates/calendar.mustache';
 
-console.log(styles);
+import previousIcon from '../icons/chevron-left.svg';
+import nextIcon from '../icons/chevron-right.svg';
 
 const months = [
   'January',
@@ -31,10 +32,17 @@ const dayLabels = [
   'Saturday'
 ]
 
-export default function atomical(el) {
+export default function atomical(el, month, year) {
   const now = new Date();
-  const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
-  const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  month = month || now.getMonth();
+  year = year || now.getFullYear();
+
+  render(el, month, year);
+}
+
+function render(el, month, year) {
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
   const daysInMonth = lastDay.getDate();
   const firstWeekday = firstDay.getDay();
   const lastWeekday = lastDay.getDay();
@@ -47,18 +55,29 @@ export default function atomical(el) {
 
   const days = [];
   for (let i = 1; i <= daysInMonth; i++) {
-    days.push(i);
+    days.push({
+      date: i,
+      classes: isToday(i, month, year) ? `${styles.day} ${styles.today}` : styles.day
+    });
   }
 
-  el.innerHTML = render(calendarTemplate, {
+  el.innerHTML = Mustache.render(calendarTemplate, {
     classes: styles,
-    month: months[now.getMonth()],
-    year: now.getFullYear(),
-    date: now,
+    month: months[month],
+    year,
     dayLabels,
     days,
     daysInMonth,
     beginPlaceholders,
-    endPlaceholders
+    endPlaceholders,
+    icons: {
+      previous: previousIcon,
+      next: nextIcon
+    }
   });
+}
+
+function isToday(date, month, year) {
+  const today = new Date();
+  return date === today.getDate() && month === today.getMonth() && year === today.getFullYear();
 }

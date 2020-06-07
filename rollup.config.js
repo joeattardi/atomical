@@ -2,6 +2,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import { string } from 'rollup-plugin-string';
+import svg from 'rollup-plugin-svg';
 import { terser } from 'rollup-plugin-terser';
 
 export default [
@@ -24,6 +25,7 @@ export default [
         extensions: ['.css'],
         modules: true
       }),
+      svg(),
       resolve(),
       commonjs(),
       string({
