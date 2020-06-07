@@ -37,9 +37,13 @@ export default function atomical(el) {
   const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
   const daysInMonth = lastDay.getDate();
   const firstWeekday = firstDay.getDay();
-  
-  const placeholders = [];
-  placeholders.length = firstWeekday;
+  const lastWeekday = lastDay.getDay();
+
+  const beginPlaceholders = [];
+  beginPlaceholders.length = firstWeekday;
+
+  const endPlaceholders = [];
+  endPlaceholders.length = dayLabels.length - 1 - lastWeekday;
 
   const days = [];
   for (let i = 1; i <= daysInMonth; i++) {
@@ -54,6 +58,7 @@ export default function atomical(el) {
     dayLabels,
     days,
     daysInMonth,
-    placeholders
+    beginPlaceholders,
+    endPlaceholders
   });
 }

@@ -1,14 +1,19 @@
 <div class="{{classes.calendar}}">
-  <h2>{{month}} {{year}}</h2>
-  <div class="{{classes.grid}}">
+  <div class="{{classes.title}}"><h2>{{month}} {{year}}</h2></div>
+  <div class="{{classes.days}}">
     {{#dayLabels}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/dayLabels}}
-
-    {{#placeholders}}
+  </div>
+  <div class="{{classes.grid}}">
+    {{#beginPlaceholders}}
       <div class="{{classes.placeholder}}"></div>
-    {{/placeholders}}
+    {{/beginPlaceholders}}
 
     {{#days}}
-      <div class="{{classes.day}}">{{.}}</div>
+      <div class="{{classes.day}}"><div>{{.}}</div></div>
     {{/days}}
+
+    {{#endPlaceholders}}
+      <div class="{{classes.placeholder}}"></div>
+    {{/endPlaceholders}}
   </div>
 </div>

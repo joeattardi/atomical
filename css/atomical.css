@@ -1,23 +1,59 @@
 .calendar {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.calendar .title {
+  width: 100%;
+  text-align: center;
+}
+
+.calendar .days {
+  display: grid;
+  grid-template-rows: 2rem;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid #CCCCCC;
+  border-bottom: none;
+  background: #CCCCCC;
+  gap: 1px;
+}
+
+.calendar .days .dayHeader {
+  align-self: stretch;
+  justify-self: stretch;
+  background: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .calendar .grid {
   display: grid;
-
-  grid-template-rows: 2rem;
-  grid-auto-rows: 5rem;
   grid-template-columns: repeat(7, 1fr);
+  border: 1px solid #CCCCCC;
+  background: #CCCCCC;
+  gap: 1px;
 }
 
-.calendar .grid .dayHeader {
-  justify-self: center;
-  align-self: center;
+.calendar .grid > div {
+  display: grid;
+  background: #FFFFFF;
+}
+
+.calendar .grid > div > div {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.calendar .grid > div::before {
+  content: '';
+  padding-bottom: 100%;
+  display: block;
+  grid-area: 1 / 1 / 2 / 2;
 }
 
 .calendar .grid .placeholder {
-  background: #999999;
+  background: #EEEEEE;
 }
 
-.calendar .grid .day {
-  border: 1px solid #000000;
+.calendar .grid .day > div {
+  padding: 0.5rem;
 }
