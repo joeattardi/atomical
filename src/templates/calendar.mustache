@@ -1,3 +1,14 @@
 <div class="{{classes.calendar}}">
-  <h2>Hello {{name}}!</h2>
+  <h2>{{month}} {{year}}</h2>
+  <div class="{{classes.grid}}">
+    {{#dayLabels}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/dayLabels}}
+
+    {{#placeholders}}
+      <div class="{{classes.placeholder}}"></div>
+    {{/placeholders}}
+
+    {{#days}}
+      <div class="{{classes.day}}">{{.}}</div>
+    {{/days}}
+  </div>
 </div>

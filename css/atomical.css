@@ -1,7 +1,23 @@
 .calendar {
-  background: red;
 }
 
-.calendar .test {
-  background: blue;
+.calendar .grid {
+  display: grid;
+
+  grid-template-rows: 2rem;
+  grid-auto-rows: 5rem;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendar .grid .dayHeader {
+  justify-self: center;
+  align-self: center;
+}
+
+.calendar .grid .placeholder {
+  background: #999999;
+}
+
+.calendar .grid .day {
+  border: 1px solid #000000;
 }
