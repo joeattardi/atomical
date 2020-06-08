@@ -7,6 +7,10 @@ import calendarTemplate from './templates/calendar.mustache';
 import previousIcon from '../icons/chevron-left.svg';
 import nextIcon from '../icons/chevron-right.svg';
 
+const SIZE_LARGE = 'large';
+const SIZE_MEDIUM = 'medium';
+const SIZE_SMALL = 'small';
+
 const months = [
   'January',
   'February',
@@ -22,7 +26,7 @@ const months = [
   'December'
 ];
 
-const dayLabels = [
+const fullDayNames = [
   'Sunday',
   'Monday',
   'Tuesday',
@@ -30,17 +34,49 @@ const dayLabels = [
   'Thursday',
   'Friday',
   'Saturday'
-]
+];
 
-export default function atomical(el, month, year) {
+const shortDayNames = [
+  'Sun',
+  'Mon',
+  'Tue',
+  'Wed',
+  'Thu',
+  'Fri',
+  'Sat'
+];
+
+const initialDayNames = [
+  'S',
+  'M',
+  'T',
+  'W',
+  'T',
+  'F',
+  'S'
+];
+
+const dayNames = {
+  [SIZE_LARGE]: fullDayNames,
+  [SIZE_MEDIUM]: shortDayNames,
+  [SIZE_SMALL]: initialDayNames
+};
+
+const defaultOptions = {
+  size: SIZE_LARGE
+};
+
+export default function atomical(el, options = {}) {
+  const actualOptions = { ...defaultOptions, ...options };
+
   const now = new Date();
-  month = month || now.getMonth();
-  year = year || now.getFullYear();
+  const month = actualOptions.month || now.getMonth();
+  const year = actualOptions.year || now.getFullYear();
 
-  render(el, month, year);
+  render(el, month, year, actualOptions.size);
 }
 
-function render(el, month, year) {
+function render(el, month, year, size) {
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const daysInMonth = lastDay.getDate();
@@ -51,7 +87,7 @@ function render(el, month, year) {
   beginPlaceholders.length = firstWeekday;
 
   const endPlaceholders = [];
-  endPlaceholders.length = dayLabels.length - 1 - lastWeekday;
+  endPlaceholders.length = fullDayNames.length - 1 - lastWeekday;
 
   const days = [];
   for (let i = 1; i <= daysInMonth; i++) {
@@ -65,7 +101,7 @@ function render(el, month, year) {
     classes: styles,
     month: months[month],
     year,
-    dayLabels,
+    dayNames: dayNames[size],
     days,
     daysInMonth,
     beginPlaceholders,

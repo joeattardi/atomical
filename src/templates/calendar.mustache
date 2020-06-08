@@ -1,11 +1,9 @@
 <div class="{{classes.calendar}}">
   <div class="{{classes.header}}">
-    <button class="{{classes.previousButton}}">{{{icons.previous}}}</button>
     <h2><span class="{{classes.titleMonth}}">{{month}}</span> <span class="{{classes.titleYear}}">{{year}}</span></h2>
-    <button class="{{classes.nextButton}}">{{{icons.next}}}</button>
   </div>
   <div class="{{classes.days}}">
-    {{#dayLabels}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/dayLabels}}
+    {{#dayNames}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/dayNames}}
   </div>
   <div class="{{classes.grid}}">
     {{#beginPlaceholders}}
