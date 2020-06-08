@@ -46,6 +46,18 @@
   gap: 1px;
 }
 
+.calendar .daysLarge,
+.calendar .daysMedium,
+.calendar .daysSmall {
+  display: none;
+}
+
+.calendar.large .daysLarge,
+.calendar.medium .daysMedium,
+.calendar.small .daysSmall {
+  display: grid;
+}
+
 .calendar .days .dayHeader {
   align-self: stretch;
   justify-self: stretch;

@@ -63,8 +63,17 @@ const dayNames = {
 };
 
 const defaultOptions = {
-  size: SIZE_LARGE
 };
+
+function getSizeClass(width) {
+  if (width > 650) {
+    return styles[SIZE_LARGE];
+  } else if (width > 400) {
+    return styles[SIZE_MEDIUM];
+  }
+
+  return styles[SIZE_SMALL];
+}
 
 export default function atomical(el, options = {}) {
   const actualOptions = { ...defaultOptions, ...options };
@@ -74,6 +83,15 @@ export default function atomical(el, options = {}) {
   const year = actualOptions.year || now.getFullYear();
 
   render(el, month, year, actualOptions.size);
+
+  const resizeObserver = new ResizeObserver(entries => {
+    const container = entries.find(entry => entry.target === el);
+    const { width } = container.contentRect;
+    const calendarEl = el.querySelector(`.${styles.calendar}`);
+    calendarEl.className = `${styles.calendar} ${getSizeClass(width)}`;
+  });
+
+  resizeObserver.observe(el);
 }
 
 function render(el, month, year, size) {
@@ -102,6 +120,9 @@ function render(el, month, year, size) {
     month: months[month],
     year,
     dayNames: dayNames[size],
+    fullDayNames,
+    shortDayNames,
+    initialDayNames,
     days,
     daysInMonth,
     beginPlaceholders,
