@@ -1,0 +1,2 @@
+# Atomical
+Vanilla JavaScript calendar
