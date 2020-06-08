@@ -65,6 +65,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
 }
 
 .calendar .grid {
@@ -97,6 +98,12 @@
 
 .calendar .grid .day > div {
   padding: 0.5rem;
+}
+
+.calendar.small .grid .day > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .calendar .grid .day.today {
