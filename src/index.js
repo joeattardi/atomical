@@ -56,10 +56,13 @@ const initialDayNames = [
   'S'
 ];
 
-const dayNames = {
-  [SIZE_LARGE]: fullDayNames,
-  [SIZE_MEDIUM]: shortDayNames,
-  [SIZE_SMALL]: initialDayNames
+const colorVariables = {
+  headerBackground: '--header-background',
+  headerColor: '--header-color',
+  todayBackground: '--today-background',
+  placeholderBackground: '--placeholder-background',
+  dayBorderColor: '--day-border-color',
+  calendarBackground: '--calendar-background'
 };
 
 const defaultOptions = {
@@ -76,13 +79,16 @@ function getSizeClass(width) {
 }
 
 export default function atomical(el, options = {}) {
-  const actualOptions = { ...defaultOptions, ...options };
+  const calendarEl = document.createElement('div');
+  calendarEl.className = styles.calendar;
 
-  const now = new Date();
-  const month = actualOptions.month || now.getMonth();
-  const year = actualOptions.year || now.getFullYear();
+  if (options.colors) {
+    applyColors(calendarEl, options.colors);
+  }
 
-  render(el, month, year, actualOptions.size);
+  el.appendChild(calendarEl);
+
+  render(calendarEl, { ...defaultOptions, ...options });
 
   const resizeObserver = new ResizeObserver(entries => {
     const container = entries.find(entry => entry.target === el);
@@ -94,7 +100,11 @@ export default function atomical(el, options = {}) {
   resizeObserver.observe(el);
 }
 
-function render(el, month, year, size) {
+function render(calendarEl, options) {
+  const now = new Date();
+  const month = options.month || now.getMonth();
+  const year = options.year || now.getFullYear();
+
   const firstDay = new Date(year, month, 1);
   const lastDay = new Date(year, month + 1, 0);
   const daysInMonth = lastDay.getDate();
@@ -115,11 +125,10 @@ function render(el, month, year, size) {
     });
   }
 
-  el.innerHTML = Mustache.render(calendarTemplate, {
+  calendarEl.innerHTML = Mustache.render(calendarTemplate, {
     classes: styles,
     month: months[month],
     year,
-    dayNames: dayNames[size],
     fullDayNames,
     shortDayNames,
     initialDayNames,
@@ -137,4 +146,10 @@ function render(el, month, year, size) {
 function isToday(date, month, year) {
   const today = new Date();
   return date === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+}
+
+function applyColors(calendarEl, colors) {
+  Object.keys(colors).forEach(color => {
+    calendarEl.style.setProperty(colorVariables[color], colors[color]);
+  });
 }

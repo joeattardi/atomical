@@ -1,7 +1,15 @@
 .calendar {
-  font-family: Arial, Helvetica, sans-serif;
+  --header-background: #cc333f;
+  --header-color: #ffffff;
   --button-hover-color: #1693a5;
   --today-background: #f5e7dc;
+  --placeholder-background: #eeeeee;
+  --day-border-color: #cccccc;
+  --calendar-background: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 1rem;
+  font-size: 1rem;
 }
 
 .calendar .header {
@@ -9,8 +17,20 @@
   text-align: center;
   display: flex;
   flex-direction: row;
-  margin: 1rem 0;
+  padding: 3% 0;
   justify-content: center;
+  color: var(--header-color);
+  background: var(--header-background);
+  border-radius: 5px 5px 0 0;
+  font-size: 1.2em;
+}
+
+.calendar.medium .header {
+  font-size: 1em;
+}
+
+.calendar.small .header {
+  font-size: 0.8em;
 }
 
 .calendar .header h2 {
@@ -40,9 +60,8 @@
   display: grid;
   grid-template-rows: 2rem;
   grid-template-columns: repeat(7, 1fr);
-  border: 1px solid #cccccc;
   border-bottom: none;
-  background: #cccccc;
+  background: var(--header-background);
   gap: 1px;
 }
 
@@ -61,24 +80,25 @@
 .calendar .days .dayHeader {
   align-self: stretch;
   justify-self: stretch;
-  background: #ffffff;
+  background: var(--header-background);
+  color: var(--header-color);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
+  font-size: 0.8em;
 }
 
 .calendar .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  border: 1px solid #cccccc;
-  background: #cccccc;
+  border: 1px solid var(--day-border-color);
+  background: var(--day-border-color);
   gap: 1px;
 }
 
 .calendar .grid > div {
   display: grid;
-  background: #ffffff;
+  background: var(--calendar-background);
 }
 
 .calendar .grid > div > div {
@@ -93,7 +113,7 @@
 }
 
 .calendar .grid .placeholder {
-  background: #eeeeee;
+  background: var(--placeholder-background);
 }
 
 .calendar .grid .day > div {

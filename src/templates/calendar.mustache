@@ -1,27 +1,25 @@
-<div class="{{classes.calendar}}">
-  <div class="{{classes.header}}">
-    <h2><span class="{{classes.titleMonth}}">{{month}}</span> <span class="{{classes.titleYear}}">{{year}}</span></h2>
-  </div>
-  <div class="{{classes.days}} {{classes.daysLarge}}">
-    {{#fullDayNames}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/fullDayNames}}
-  </div>
-  <div class="{{classes.days}} {{classes.daysMedium}}">
-    {{#shortDayNames}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/shortDayNames}}
-  </div>
-  <div class="{{classes.days}} {{classes.daysSmall}}">
-    {{#initialDayNames}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/initialDayNames}}
-  </div>
-  <div class="{{classes.grid}}">
-    {{#beginPlaceholders}}
-      <div class="{{classes.placeholder}}"></div>
-    {{/beginPlaceholders}}
+<div class="{{classes.header}}">
+  <h2><span class="{{classes.titleMonth}}">{{month}}</span> <span class="{{classes.titleYear}}">{{year}}</span></h2>
+</div>
+<div class="{{classes.days}} {{classes.daysLarge}}">
+  {{#fullDayNames}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/fullDayNames}}
+</div>
+<div class="{{classes.days}} {{classes.daysMedium}}">
+  {{#shortDayNames}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/shortDayNames}}
+</div>
+<div class="{{classes.days}} {{classes.daysSmall}}">
+  {{#initialDayNames}}<div class="{{classes.dayHeader}}">{{.}}</div>{{/initialDayNames}}
+</div>
+<div class="{{classes.grid}}">
+  {{#beginPlaceholders}}
+    <div class="{{classes.placeholder}}"></div>
+  {{/beginPlaceholders}}
 
-    {{#days}}
-      <div class="{{classes}}"><div>{{date}}</div></div>
-    {{/days}}
+  {{#days}}
+    <div class="{{classes}}"><div>{{date}}</div></div>
+  {{/days}}
 
-    {{#endPlaceholders}}
-      <div class="{{classes.placeholder}}"></div>
-    {{/endPlaceholders}}
-  </div>
+  {{#endPlaceholders}}
+    <div class="{{classes.placeholder}}"></div>
+  {{/endPlaceholders}}
 </div>
