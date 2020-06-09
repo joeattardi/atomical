@@ -85,6 +85,10 @@ function getSizeClass(width) {
 }
 
 export default function atomical(el, options = {}) {
+  while (el.firstChild) {
+    el.removeChild(el.firstChild);
+  }
+
   const calendarEl = document.createElement('div');
   calendarEl.className = styles.calendar;
 
