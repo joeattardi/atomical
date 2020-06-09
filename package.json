@@ -20,6 +20,8 @@
     "type": "git",
     "url": "https://github.com/joeattardi/atomical.git"
   },
+  "homepage": "https://joeattardi.github.io/atomical/",
+  "bugs": "https://github.com/joeattardi/atomical/issues",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^13.0.0",
