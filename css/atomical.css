@@ -17,7 +17,9 @@
   text-align: center;
   display: flex;
   flex-direction: row;
-  padding: 3% 0;
+  padding: 0;
+  padding-top: min(3%, 1rem);
+  padding-bottom: min(3%, 1rem);
   justify-content: center;
   color: var(--header-color);
   background: var(--header-background);
