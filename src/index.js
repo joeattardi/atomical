@@ -66,6 +66,12 @@ const colorVariables = {
 };
 
 const defaultOptions = {
+  i18n: {
+    months,
+    fullDayNames,
+    shortDayNames,
+    initialDayNames
+  }
 };
 
 function getSizeClass(width) {
@@ -127,11 +133,11 @@ function render(calendarEl, options) {
 
   calendarEl.innerHTML = Mustache.render(calendarTemplate, {
     classes: styles,
-    month: months[month],
+    month: options.i18n.months[month],
     year,
-    fullDayNames,
-    shortDayNames,
-    initialDayNames,
+    fullDayNames: options.i18n.fullDayNames,
+    shortDayNames: options.i18n.shortDayNames,
+    initialDayNames: options.i18n.initialDayNames,
     days,
     daysInMonth,
     beginPlaceholders,
