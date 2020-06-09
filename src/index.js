@@ -112,7 +112,7 @@ export default function atomical(el, options = {}) {
 
 function render(calendarEl, options) {
   const now = new Date();
-  const month = options.month || now.getMonth();
+  const month = typeof options.month === 'undefined' ? now.getMonth() : options.month;
   const year = options.year || now.getFullYear();
 
   const firstDay = new Date(year, month, 1);
