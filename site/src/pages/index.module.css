@@ -5,9 +5,17 @@
   padding: 1rem;
 }
 
-.hero img {
+.hero .heroImage {
   width: 100%;
   max-width: 500px;
+}
+
+.hero .badges {
+  margin-top: 1rem;
+}
+
+.hero .badges img {
+  margin: 0.5rem;
 }
 
 .hero h2 {

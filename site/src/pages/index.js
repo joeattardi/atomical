@@ -37,8 +37,12 @@ export default function Home() {
   return (
     <div>
       <div className={styles.hero}>
-        <img src={hero} />
+        <img src={hero} className={styles.heroImage} />
         <h2>JavaScript Calendar Component</h2>
+        <div className={styles.badges}>
+          <a href="https://npmjs.com/package/atomical"><img src="https://img.shields.io/npm/v/atomical" /></a>
+          <a href="https://github.com/joeattardi/atomical"><img src="https://img.shields.io/github/stars/joeattardi/atomical?style=social" /></a>
+        </div>
       </div>
       <div className={styles.header}>
         <code className={styles.installationCode}>npm install --save atomical</code>
