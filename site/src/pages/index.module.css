@@ -1,0 +1,31 @@
+.hero {
+  background: url('/escheresque_ste.png');
+  text-align: center;
+  color: #ffffff;
+  padding: 1rem;
+}
+
+.hero img {
+  width: 100%;
+  max-width: 500px;
+}
+
+.hero h2 {
+  margin: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+}
+
+.calendar {
+  flex-basis: 50%;
+  flex-grow: 1;
+}
+
+.codeExample {
+  flex-basis: 50%;
+  flex-grow: 1;
+  padding: 1rem;
+}

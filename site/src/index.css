@@ -1,0 +1,13 @@
+/* https://www.colourlovers.com/palette/625987/dont_you_go_down */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap');
+
+:root {
+  --header-background: #403b33;
+  --header-color: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+}

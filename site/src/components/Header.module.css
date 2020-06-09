@@ -1,0 +1,12 @@
+.header {
+  background: var(--header-background);
+  color: var(--header-color);
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header img {
+  width: 500px;
+}
