@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Vanilla JavaScript calendar component",
   "main": "dist/atomical.min.js",
-  "files": ["dist/atomical.min.js"],
+  "files": [
+    "dist/atomical.min.js"
+  ],
   "scripts": {
     "clean": "rimraf dist",
     "build": "rollup -c",
