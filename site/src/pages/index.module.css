@@ -58,6 +58,10 @@
   border-radius: 3px;
 }
 
+#calendar2 {
+  --header-background: blue;
+}
+
 @media screen and (max-width: 450px) {
   .main {
     flex-direction: column-reverse;

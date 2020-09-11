@@ -2,34 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
-import atomical from 'atomical';
+import 'atomical';
 
 import hero from '../images/hero.png';
 
 import styles from './index.module.css';
 
 export default function Home() {
-  const calendarRef = useRef();
-  const calendar2Ref = useRef();
-
-  useEffect(() => {
-    if (calendarRef.current) {
-      atomical(calendarRef.current);
-    }
-  }, [calendarRef])
-
-  useEffect(() => {
-    if (calendar2Ref.current) {
-      atomical(calendar2Ref.current, {
-        month: 0,
-        year: 2021,
-        colors: {
-          headerBackground: 'blue'
-        }
-      });
-    }
-  }, [calendar2Ref]);
-
   useEffect(() => {
     Prism.highlightAll();
   }, []);
@@ -49,7 +28,7 @@ export default function Home() {
       </div>
 
       <div className={styles.main}>
-        <div ref={calendarRef} className={styles.calendar} id="calendar"></div>
+        <atomical-calendar class={styles.calendar}></atomical-calendar>
         <div className={styles.codeExample}>
           <h3>Basic usage</h3>
           <p>
@@ -68,7 +47,7 @@ atomical(container);`}
       </div>
 
       <div className={styles.main}>
-        <div ref={calendar2Ref} className={styles.calendar} id="calendar2"></div>
+        <atomical-calendar class={styles.calendar} month="0" year="2021" id={styles.calendar2}></atomical-calendar>
         <div className={styles.codeExample}>
           <h3>Customize</h3>
           <p>

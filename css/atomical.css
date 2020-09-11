@@ -1,4 +1,4 @@
-.calendar {
+:host {
   --header-background: #cc333f;
   --header-color: #ffffff;
   --button-hover-color: #1693a5;
@@ -12,7 +12,7 @@
   font-size: 1rem;
 }
 
-.calendar .header {
+.header {
   width: 100%;
   text-align: center;
   display: flex;
@@ -27,38 +27,38 @@
   font-size: 1.2em;
 }
 
-.calendar.medium .header {
+.medium .header {
   font-size: 1em;
 }
 
-.calendar.small .header {
+.small .header {
   font-size: 0.8em;
 }
 
-.calendar .header h2 {
+.header h2 {
   margin: 0;
   flex-grow: 1;
   text-align: center;
 }
 
-.calendar .header .titleYear {
+.header .titleYear {
   font-weight: normal;
 }
 
-.calendar .header .previousButton,
-.calendar .header .nextButton {
+.header .previousButton,
+.header .nextButton {
   background: transparent;
   border: none;
   cursor: pointer;
   transition: all 150ms;
 }
 
-.calendar .header .previousButton:hover,
-.calendar .header .nextButton:hover {
+.header .previousButton:hover,
+.header .nextButton:hover {
   color: var(--button-hover-color);
 }
 
-.calendar .days {
+.days {
   display: grid;
   grid-template-rows: 2rem;
   grid-template-columns: repeat(7, 1fr);
@@ -67,19 +67,19 @@
   gap: 1px;
 }
 
-.calendar .daysLarge,
-.calendar .daysMedium,
-.calendar .daysSmall {
+.daysLarge,
+.daysMedium,
+.daysSmall {
   display: none;
 }
 
-.calendar.large .daysLarge,
-.calendar.medium .daysMedium,
-.calendar.small .daysSmall {
+.large .daysLarge,
+.medium .daysMedium,
+.small .daysSmall {
   display: grid;
 }
 
-.calendar .days .dayHeader {
+.days .dayHeader {
   align-self: stretch;
   justify-self: stretch;
   background: var(--header-background);
@@ -90,7 +90,7 @@
   font-size: 0.8em;
 }
 
-.calendar .grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   border: 1px solid var(--day-border-color);
@@ -98,36 +98,36 @@
   gap: 1px;
 }
 
-.calendar .grid > div {
+.grid > div {
   display: grid;
   background: var(--calendar-background);
 }
 
-.calendar .grid > div > div {
+.grid > div > div {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.calendar .grid > div::before {
+.grid > div::before {
   content: '';
   padding-bottom: 100%;
   display: block;
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.calendar .grid .placeholder {
+.grid .placeholder {
   background: var(--placeholder-background);
 }
 
-.calendar .grid .day > div {
+.grid .day > div {
   padding: 0.5rem;
 }
 
-.calendar.small .grid .day > div {
+.small .grid .day > div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.calendar .grid .day.today {
+.grid .day.today {
   background: var(--today-background);
 }

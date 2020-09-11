@@ -4,9 +4,6 @@ import Mustache from 'mustache';
 
 import calendarTemplate from './templates/calendar.mustache';
 
-import previousIcon from '../icons/chevron-left.svg';
-import nextIcon from '../icons/chevron-right.svg';
-
 const SIZE_LARGE = 'large';
 const SIZE_MEDIUM = 'medium';
 const SIZE_SMALL = 'small';
@@ -56,110 +53,82 @@ const initialDayNames = [
   'S'
 ];
 
-const colorVariables = {
-  headerBackground: '--header-background',
-  headerColor: '--header-color',
-  todayBackground: '--today-background',
-  placeholderBackground: '--placeholder-background',
-  dayBorderColor: '--day-border-color',
-  calendarBackground: '--calendar-background'
-};
-
-const defaultOptions = {
-  i18n: {
-    months,
-    fullDayNames,
-    shortDayNames,
-    initialDayNames
-  }
-};
-
-function getSizeClass(width) {
-  if (width > 650) {
-    return styles[SIZE_LARGE];
-  } else if (width > 400) {
-    return styles[SIZE_MEDIUM];
-  }
-
-  return styles[SIZE_SMALL];
-}
-
-export default function atomical(el, options = {}) {
-  while (el.firstChild) {
-    el.removeChild(el.firstChild);
-  }
-
-  const calendarEl = document.createElement('div');
-  calendarEl.className = styles.calendar;
-
-  if (options.colors) {
-    applyColors(calendarEl, options.colors);
-  }
-
-  el.appendChild(calendarEl);
-
-  render(calendarEl, { ...defaultOptions, ...options });
-
-  const resizeObserver = new ResizeObserver(entries => {
-    const container = entries.find(entry => entry.target === el);
-    const { width } = container.contentRect;
-    const calendarEl = el.querySelector(`.${styles.calendar}`);
-    calendarEl.className = `${styles.calendar} ${getSizeClass(width)}`;
-  });
-
-  resizeObserver.observe(el);
-}
-
-function render(calendarEl, options) {
-  const now = new Date();
-  const month = typeof options.month === 'undefined' ? now.getMonth() : options.month;
-  const year = options.year || now.getFullYear();
-
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
-  const daysInMonth = lastDay.getDate();
-  const firstWeekday = firstDay.getDay();
-  const lastWeekday = lastDay.getDay();
-
-  const beginPlaceholders = [];
-  beginPlaceholders.length = firstWeekday;
-
-  const endPlaceholders = [];
-  endPlaceholders.length = fullDayNames.length - 1 - lastWeekday;
-
-  const days = [];
-  for (let i = 1; i <= daysInMonth; i++) {
-    days.push({
-      date: i,
-      classes: isToday(i, month, year) ? `${styles.day} ${styles.today}` : styles.day
-    });
-  }
-
-  calendarEl.innerHTML = Mustache.render(calendarTemplate, {
-    classes: styles,
-    month: options.i18n.months[month],
-    year,
-    fullDayNames: options.i18n.fullDayNames,
-    shortDayNames: options.i18n.shortDayNames,
-    initialDayNames: options.i18n.initialDayNames,
-    days,
-    daysInMonth,
-    beginPlaceholders,
-    endPlaceholders,
-    icons: {
-      previous: previousIcon,
-      next: nextIcon
-    }
-  });
-}
-
 function isToday(date, month, year) {
   const today = new Date();
   return date === today.getDate() && month === today.getMonth() && year === today.getFullYear();
 }
 
-function applyColors(calendarEl, colors) {
-  Object.keys(colors).forEach(color => {
-    calendarEl.style.setProperty(colorVariables[color], colors[color]);
-  });
+function getSizeClass(width) {
+  if (width > 650) {
+    return SIZE_LARGE;
+  } else if (width > 400) {
+    return SIZE_MEDIUM;
+  }
+
+  return SIZE_SMALL;
 }
+
+class Calendar extends HTMLElement {
+  connectedCallback() {
+    const monthAttr = this.getAttribute('month');
+    const yearAttr = this.getAttribute('year');
+    
+    const now = new Date();
+    const month = monthAttr !== null ? parseInt(monthAttr, 10) : now.getMonth();
+    const year = yearAttr !== null ? parseInt(yearAttr, 10) : now.getFullYear();
+
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const firstWeekday = firstDay.getDay();
+    const lastWeekday = lastDay.getDay();
+
+    const beginPlaceholders = [];
+    beginPlaceholders.length = firstWeekday;
+
+    const endPlaceholders = [];
+    endPlaceholders.length = fullDayNames.length - 1 - lastWeekday;
+
+    const days = [];
+    for (let i = 1; i <= daysInMonth; i++) {
+      days.push({
+        date: i,
+        classes: isToday(i, month, year) ? 'day today' : 'day'
+      });
+    }
+
+    const calendarEl = document.createElement('div');
+    calendarEl.className = 'large';
+    calendarEl.innerHTML = Mustache.render(calendarTemplate, {
+      month: months[month],
+      year,
+      fullDayNames,
+      shortDayNames,
+      initialDayNames,
+      days,
+      daysInMonth,
+      beginPlaceholders,
+      endPlaceholders
+    });
+
+    const styleEl = document.createElement('style');
+    styleEl.textContent = styles;
+
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.appendChild(styleEl);
+    shadow.appendChild(calendarEl);
+
+    this.resizeObserver = new ResizeObserver(entries => {
+      const container = entries.find(entry => entry.target === calendarEl);
+      const { width } = container.contentRect;
+      calendarEl.className = getSizeClass(width);
+    });
+    this.resizeObserver.observe(calendarEl);
+  }
+
+  disconnectedCallback() {
+    this.resizeObserver.disconnect();
+  }
+}
+
+customElements.define('atomical-calendar', Calendar);
