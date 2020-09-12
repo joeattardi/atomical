@@ -7,7 +7,7 @@ import {
   initialDayNames
 } from './strings';
 import { createMainTemplate } from './templates';
-import { getSizeClass, createDay, createPlaceholder } from './util';
+import { empty, getSizeClass, createDay, createPlaceholder } from './util';
 
 const mainTemplate = createMainTemplate(
   fullDayNames,
@@ -17,7 +17,22 @@ const mainTemplate = createMainTemplate(
 
 export class Calendar extends HTMLElement {
   connectedCallback() {
+    const styleEl = document.createElement('style');
+    styleEl.textContent = styles;
+
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.appendChild(styleEl);
+    shadow.appendChild(mainTemplate.content.cloneNode(true));
+
+    this.findElements();
     this.render();
+
+    this.resizeObserver = new ResizeObserver(entries => {
+      const container = entries.find(entry => entry.target === this.calendarEl);
+      const { width } = container.contentRect;
+      this.calendarEl.className = `calendar ${getSizeClass(width)}`;
+    });
+    this.resizeObserver.observe(this.calendarEl);
   }
 
   render() {
@@ -34,17 +49,10 @@ export class Calendar extends HTMLElement {
     const firstWeekday = firstDay.getDay();
     const lastWeekday = lastDay.getDay();
 
-    const styleEl = document.createElement('style');
-    styleEl.textContent = styles;
-
-    const shadow = this.attachShadow({ mode: 'open' });
-    shadow.appendChild(styleEl);
-    shadow.appendChild(mainTemplate.content.cloneNode(true));
-
-    this.findElements();
-
     this.monthEl.textContent = months[month];
     this.yearEl.textContent = year;
+
+    empty(this.gridEl);
 
     for (let i = 0; i < firstWeekday; i++) {
       this.gridEl.appendChild(createPlaceholder());
@@ -58,12 +66,7 @@ export class Calendar extends HTMLElement {
       this.gridEl.appendChild(createPlaceholder());
     }
 
-    this.resizeObserver = new ResizeObserver(entries => {
-      const container = entries.find(entry => entry.target === this.calendarEl);
-      const { width } = container.contentRect;
-      this.calendarEl.className = `calendar ${getSizeClass(width)}`;
-    });
-    this.resizeObserver.observe(this.calendarEl);
+    this.isRendered = true;
   }
 
   findElements() {
@@ -75,6 +78,16 @@ export class Calendar extends HTMLElement {
 
   disconnectedCallback() {
     this.resizeObserver.disconnect();
+  }
+
+  attributeChangedCallback() {
+    if (this.isRendered) {
+      this.render();
+    }
+  }
+
+  static get observedAttributes() {
+    return ['month', 'year'];
   }
 }
 

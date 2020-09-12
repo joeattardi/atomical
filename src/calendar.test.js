@@ -62,4 +62,20 @@ describe('Atomical Calendar', () => {
     expect(todayEl).toBeDefined();
     expect(todayEl.dataset.date).toEqual(todayDateString);
   });
+
+  test('should re-render when the month or year is changed', () => {
+    const calendar = new Calendar();
+    calendar.setAttribute('month', 5);
+    calendar.setAttribute('year', 1981);
+    document.body.appendChild(calendar);
+
+    expect(calendar.monthEl.textContent).toEqual(months[5]);
+    expect(calendar.yearEl.textContent).toEqual('1981');
+
+    calendar.setAttribute('month', 9);
+    calendar.setAttribute('year', 1980);
+
+    expect(calendar.monthEl.textContent).toEqual(months[9]);
+    expect(calendar.yearEl.textContent).toEqual('1980');
+  });
 });
