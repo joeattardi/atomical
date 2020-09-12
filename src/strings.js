@@ -23,22 +23,6 @@ export const fullDayNames = [
   'Saturday'
 ];
 
-export const shortDayNames = [
-  'Sun',
-  'Mon',
-  'Tue',
-  'Wed',
-  'Thu',
-  'Fri',
-  'Sat'
-];
+export const shortDayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-export const initialDayNames = [
-  'S',
-  'M',
-  'T',
-  'W',
-  'T',
-  'F',
-  'S'
-];
+export const initialDayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];

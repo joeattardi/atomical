@@ -1,10 +1,19 @@
 import styles from '../css/atomical.css';
 
-import { months, fullDayNames, shortDayNames, initialDayNames } from './strings';
+import {
+  months,
+  fullDayNames,
+  shortDayNames,
+  initialDayNames
+} from './strings';
 import { createMainTemplate } from './templates';
 import { getSizeClass, createDay, createPlaceholder } from './util';
 
-const mainTemplate = createMainTemplate(fullDayNames, shortDayNames, initialDayNames);
+const mainTemplate = createMainTemplate(
+  fullDayNames,
+  shortDayNames,
+  initialDayNames
+);
 
 class Calendar extends HTMLElement {
   connectedCallback() {
@@ -14,7 +23,7 @@ class Calendar extends HTMLElement {
   render() {
     const monthAttr = this.getAttribute('month');
     const yearAttr = this.getAttribute('year');
-    
+
     const now = new Date();
     const month = monthAttr !== null ? parseInt(monthAttr, 10) : now.getMonth();
     const year = yearAttr !== null ? parseInt(yearAttr, 10) : now.getFullYear();

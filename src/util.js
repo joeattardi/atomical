@@ -11,7 +11,7 @@ export function createPlaceholder() {
 
 export function createDay(day, month, year) {
   const dayEl = document.createElement('div');
-  
+
   dayEl.classList.add('day');
   if (isToday(day, month, year)) {
     dayEl.classList.add('today');
@@ -24,7 +24,11 @@ export function createDay(day, month, year) {
 
 export function isToday(date, month, year) {
   const today = new Date();
-  return date === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+  return (
+    date === today.getDate() &&
+    month === today.getMonth() &&
+    year === today.getFullYear()
+  );
 }
 
 export function getSizeClass(width) {
