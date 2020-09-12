@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Atomical Calendar should display the current month and year 1`] = `
+"<style>:host {
+  --header-background: #cc333f;
+  --header-color: #ffffff;
+  --button-hover-color: #1693a5;
+  --today-background: #f5e7dc;
+  --placeholder-background: #eeeeee;
+  --day-border-color: #cccccc;
+  --calendar-background: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  padding-top: min(3%, 1rem);
+  padding-bottom: min(3%, 1rem);
+  justify-content: center;
+  color: var(--header-color);
+  background: var(--header-background);
+  border-radius: 5px 5px 0 0;
+  font-size: 1.2em;
+}
+
+.medium .header {
+  font-size: 1em;
+}
+
+.small .header {
+  font-size: 0.8em;
+}
+
+.header h2 {
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.header .year {
+  font-weight: normal;
+}
+
+.header .previousButton,
+.header .nextButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 150ms;
+}
+
+.header .previousButton:hover,
+.header .nextButton:hover {
+  color: var(--button-hover-color);
+}
+
+.days {
+  display: grid;
+  grid-template-rows: 2rem;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: none;
+  background: var(--header-background);
+  gap: 1px;
+}
+
+.daysLarge,
+.daysMedium,
+.daysSmall {
+  display: none;
+}
+
+.large .daysLarge,
+.medium .daysMedium,
+.small .daysSmall {
+  display: grid;
+}
+
+.days .dayHeader {
+  align-self: stretch;
+  justify-self: stretch;
+  background: var(--header-background);
+  color: var(--header-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid var(--day-border-color);
+  background: var(--day-border-color);
+  gap: 1px;
+}
+
+.grid > div {
+  display: grid;
+  background: var(--calendar-background);
+}
+
+.grid > div > div {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.grid > div::before {
+  content: '';
+  padding-bottom: 100%;
+  display: block;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.grid .placeholder {
+  background: var(--placeholder-background);
+}
+
+.grid .day > div {
+  padding: 0.5rem;
+}
+
+.small .grid .day > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid .day.today {
+  background: var(--today-background);
+}
+</style>
+    <div class=\\"calendar large\\">
+      <div class=\\"header\\">
+        <h2><span class=\\"month\\">September</span> <span class=\\"year\\">2020</span></h2>
+      </div>
+      <div class=\\"days daysLarge\\"><div class=\\"dayHeader\\">Sunday</div><div class=\\"dayHeader\\">Monday</div><div class=\\"dayHeader\\">Tuesday</div><div class=\\"dayHeader\\">Wednesday</div><div class=\\"dayHeader\\">Thursday</div><div class=\\"dayHeader\\">Friday</div><div class=\\"dayHeader\\">Saturday</div></div>
+      <div class=\\"days daysMedium\\"><div class=\\"dayHeader\\">Sun</div><div class=\\"dayHeader\\">Mon</div><div class=\\"dayHeader\\">Tue</div><div class=\\"dayHeader\\">Wed</div><div class=\\"dayHeader\\">Thu</div><div class=\\"dayHeader\\">Fri</div><div class=\\"dayHeader\\">Sat</div></div>
+      <div class=\\"days daysSmall\\"><div class=\\"dayHeader\\">S</div><div class=\\"dayHeader\\">M</div><div class=\\"dayHeader\\">T</div><div class=\\"dayHeader\\">W</div><div class=\\"dayHeader\\">T</div><div class=\\"dayHeader\\">F</div><div class=\\"dayHeader\\">S</div></div>
+      <div class=\\"grid\\"><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div><div class=\\"day\\"><div>1</div></div><div class=\\"day\\"><div>2</div></div><div class=\\"day\\"><div>3</div></div><div class=\\"day\\"><div>4</div></div><div class=\\"day\\"><div>5</div></div><div class=\\"day\\"><div>6</div></div><div class=\\"day\\"><div>7</div></div><div class=\\"day\\"><div>8</div></div><div class=\\"day\\"><div>9</div></div><div class=\\"day\\"><div>10</div></div><div class=\\"day today\\"><div>11</div></div><div class=\\"day\\"><div>12</div></div><div class=\\"day\\"><div>13</div></div><div class=\\"day\\"><div>14</div></div><div class=\\"day\\"><div>15</div></div><div class=\\"day\\"><div>16</div></div><div class=\\"day\\"><div>17</div></div><div class=\\"day\\"><div>18</div></div><div class=\\"day\\"><div>19</div></div><div class=\\"day\\"><div>20</div></div><div class=\\"day\\"><div>21</div></div><div class=\\"day\\"><div>22</div></div><div class=\\"day\\"><div>23</div></div><div class=\\"day\\"><div>24</div></div><div class=\\"day\\"><div>25</div></div><div class=\\"day\\"><div>26</div></div><div class=\\"day\\"><div>27</div></div><div class=\\"day\\"><div>28</div></div><div class=\\"day\\"><div>29</div></div><div class=\\"day\\"><div>30</div></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div></div>
+    </div>
+  "
+`;
+
+exports[`Atomical Calendar should display the specified month and year 1`] = `
+"<style>:host {
+  --header-background: #cc333f;
+  --header-color: #ffffff;
+  --button-hover-color: #1693a5;
+  --today-background: #f5e7dc;
+  --placeholder-background: #eeeeee;
+  --day-border-color: #cccccc;
+  --calendar-background: #ffffff;
+
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 1rem;
+  font-size: 1rem;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  padding-top: min(3%, 1rem);
+  padding-bottom: min(3%, 1rem);
+  justify-content: center;
+  color: var(--header-color);
+  background: var(--header-background);
+  border-radius: 5px 5px 0 0;
+  font-size: 1.2em;
+}
+
+.medium .header {
+  font-size: 1em;
+}
+
+.small .header {
+  font-size: 0.8em;
+}
+
+.header h2 {
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.header .year {
+  font-weight: normal;
+}
+
+.header .previousButton,
+.header .nextButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 150ms;
+}
+
+.header .previousButton:hover,
+.header .nextButton:hover {
+  color: var(--button-hover-color);
+}
+
+.days {
+  display: grid;
+  grid-template-rows: 2rem;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: none;
+  background: var(--header-background);
+  gap: 1px;
+}
+
+.daysLarge,
+.daysMedium,
+.daysSmall {
+  display: none;
+}
+
+.large .daysLarge,
+.medium .daysMedium,
+.small .daysSmall {
+  display: grid;
+}
+
+.days .dayHeader {
+  align-self: stretch;
+  justify-self: stretch;
+  background: var(--header-background);
+  color: var(--header-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: 1px solid var(--day-border-color);
+  background: var(--day-border-color);
+  gap: 1px;
+}
+
+.grid > div {
+  display: grid;
+  background: var(--calendar-background);
+}
+
+.grid > div > div {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.grid > div::before {
+  content: '';
+  padding-bottom: 100%;
+  display: block;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.grid .placeholder {
+  background: var(--placeholder-background);
+}
+
+.grid .day > div {
+  padding: 0.5rem;
+}
+
+.small .grid .day > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid .day.today {
+  background: var(--today-background);
+}
+</style>
+    <div class=\\"calendar large\\">
+      <div class=\\"header\\">
+        <h2><span class=\\"month\\">June</span> <span class=\\"year\\">2020</span></h2>
+      </div>
+      <div class=\\"days daysLarge\\"><div class=\\"dayHeader\\">Sunday</div><div class=\\"dayHeader\\">Monday</div><div class=\\"dayHeader\\">Tuesday</div><div class=\\"dayHeader\\">Wednesday</div><div class=\\"dayHeader\\">Thursday</div><div class=\\"dayHeader\\">Friday</div><div class=\\"dayHeader\\">Saturday</div></div>
+      <div class=\\"days daysMedium\\"><div class=\\"dayHeader\\">Sun</div><div class=\\"dayHeader\\">Mon</div><div class=\\"dayHeader\\">Tue</div><div class=\\"dayHeader\\">Wed</div><div class=\\"dayHeader\\">Thu</div><div class=\\"dayHeader\\">Fri</div><div class=\\"dayHeader\\">Sat</div></div>
+      <div class=\\"days daysSmall\\"><div class=\\"dayHeader\\">S</div><div class=\\"dayHeader\\">M</div><div class=\\"dayHeader\\">T</div><div class=\\"dayHeader\\">W</div><div class=\\"dayHeader\\">T</div><div class=\\"dayHeader\\">F</div><div class=\\"dayHeader\\">S</div></div>
+      <div class=\\"grid\\"><div class=\\"placeholder\\"></div><div class=\\"day\\"><div>1</div></div><div class=\\"day\\"><div>2</div></div><div class=\\"day\\"><div>3</div></div><div class=\\"day\\"><div>4</div></div><div class=\\"day\\"><div>5</div></div><div class=\\"day\\"><div>6</div></div><div class=\\"day\\"><div>7</div></div><div class=\\"day\\"><div>8</div></div><div class=\\"day\\"><div>9</div></div><div class=\\"day\\"><div>10</div></div><div class=\\"day\\"><div>11</div></div><div class=\\"day\\"><div>12</div></div><div class=\\"day\\"><div>13</div></div><div class=\\"day\\"><div>14</div></div><div class=\\"day\\"><div>15</div></div><div class=\\"day\\"><div>16</div></div><div class=\\"day\\"><div>17</div></div><div class=\\"day\\"><div>18</div></div><div class=\\"day\\"><div>19</div></div><div class=\\"day\\"><div>20</div></div><div class=\\"day\\"><div>21</div></div><div class=\\"day\\"><div>22</div></div><div class=\\"day\\"><div>23</div></div><div class=\\"day\\"><div>24</div></div><div class=\\"day\\"><div>25</div></div><div class=\\"day\\"><div>26</div></div><div class=\\"day\\"><div>27</div></div><div class=\\"day\\"><div>28</div></div><div class=\\"day\\"><div>29</div></div><div class=\\"day\\"><div>30</div></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div></div>
+    </div>
+  "
+`;
