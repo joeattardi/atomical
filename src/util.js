@@ -18,6 +18,7 @@ export function createDay(day, month, year) {
   }
 
   dayEl.innerHTML = `<div>${day}</div>`;
+  dayEl.dataset.date = `${year}-${zeroPad(month + 1, 2)}-${zeroPad(day, 2)}`;
 
   return dayEl;
 }
@@ -39,4 +40,17 @@ export function getSizeClass(width) {
   }
 
   return SIZE_SMALL;
+}
+
+export function zeroPad(value, minLength) {
+  let result = value.toString();
+
+  if (result.length < minLength) {
+    const diff = minLength - result.length;
+    for (let i = 0; i < diff; i++) {
+      result = '0' + result;
+    }
+  }
+
+  return result;
 }

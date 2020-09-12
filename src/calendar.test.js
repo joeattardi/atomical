@@ -2,6 +2,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 
 import { Calendar } from './calendar';
 import { months } from './strings';
+import { zeroPad } from './util';
 
 window.ResizeObserver = ResizeObserver;
 
@@ -26,5 +27,39 @@ describe('Atomical Calendar', () => {
     expect(calendar.monthEl.textContent).toEqual(months[5]);
     expect(calendar.yearEl.textContent).toEqual('2020');
     expect(calendar.shadowRoot.innerHTML).toMatchSnapshot();
+  });
+
+  test('should render one day for each day of the month', () => {
+    const calendar = new Calendar();
+    document.body.appendChild(calendar);
+
+    const today = new Date();
+    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+    const dayEls = calendar.shadowRoot.querySelectorAll('.day');
+    expect(dayEls).toHaveLength(lastDay.getDate());
+
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    for (let i = 0; i < dayEls.length; i++) {
+      expect(dayEls[i].dataset.date).toEqual(
+        `${year}-${zeroPad(month + 1, 2)}-${zeroPad(i + 1, 2)}`
+      );
+    }
+  });
+
+  test('should highlight the current day', () => {
+    const calendar = new Calendar();
+    document.body.appendChild(calendar);
+
+    const today = new Date();
+    const todayDateString = `${today.getFullYear()}-${zeroPad(
+      today.getMonth() + 1,
+      2
+    )}-${zeroPad(today.getDate(), 2)}`;
+
+    const todayEl = calendar.shadowRoot.querySelector('.day.today');
+    expect(todayEl).toBeDefined();
+    expect(todayEl.dataset.date).toEqual(todayDateString);
   });
 });
