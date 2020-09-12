@@ -24,7 +24,7 @@ export default [
       resolve(),
       commonjs(),
       string({
-        include: ['src/templates/*.mustache', 'css/*.css']
+        include: 'css/*.css'
       })
     ]
   }

@@ -1,8 +1,7 @@
 import styles from '../css/atomical.css';
 
-import Mustache from 'mustache';
-
-import calendarTemplate from './templates/calendar.mustache';
+import { createMainTemplate } from './templates';
+import { createDay, createPlaceholder } from './util';
 
 const SIZE_LARGE = 'large';
 const SIZE_MEDIUM = 'medium';
@@ -53,6 +52,8 @@ const initialDayNames = [
   'S'
 ];
 
+const mainTemplate = createMainTemplate(fullDayNames, shortDayNames, initialDayNames);
+
 function isToday(date, month, year) {
   const today = new Date();
   return date === today.getDate() && month === today.getMonth() && year === today.getFullYear();
@@ -97,33 +98,41 @@ class Calendar extends HTMLElement {
       });
     }
 
-    const calendarEl = document.createElement('div');
-    calendarEl.className = 'large';
-    calendarEl.innerHTML = Mustache.render(calendarTemplate, {
-      month: months[month],
-      year,
-      fullDayNames,
-      shortDayNames,
-      initialDayNames,
-      days,
-      daysInMonth,
-      beginPlaceholders,
-      endPlaceholders
-    });
-
     const styleEl = document.createElement('style');
     styleEl.textContent = styles;
 
     const shadow = this.attachShadow({ mode: 'open' });
     shadow.appendChild(styleEl);
-    shadow.appendChild(calendarEl);
+    shadow.appendChild(mainTemplate.content.cloneNode(true));
+
+    this.calendarEl = shadow.querySelector('.calendar');
+
+    this.monthEl = shadow.querySelector('.month');
+    this.monthEl.textContent = months[month];
+
+    this.yearEl = shadow.querySelector('.year');
+    this.yearEl.textContent = year;
+
+    this.gridEl = shadow.querySelector('.grid');
+
+    for (let i = 0; i < firstWeekday; i++) {
+      this.gridEl.appendChild(createPlaceholder());
+    }
+
+    for (let i = 1; i <= daysInMonth; i++) {
+      this.gridEl.appendChild(createDay(i, isToday(i, month, year)));
+    }
+
+    for (let i = 0; i < fullDayNames.length - 1 - lastWeekday; i++) {
+      this.gridEl.appendChild(createPlaceholder());
+    }
 
     this.resizeObserver = new ResizeObserver(entries => {
-      const container = entries.find(entry => entry.target === calendarEl);
+      const container = entries.find(entry => entry.target === this.calendarEl);
       const { width } = container.contentRect;
-      calendarEl.className = getSizeClass(width);
+      this.calendarEl.className = `calendar ${getSizeClass(width)}`;
     });
-    this.resizeObserver.observe(calendarEl);
+    this.resizeObserver.observe(this.calendarEl);
   }
 
   disconnectedCallback() {
