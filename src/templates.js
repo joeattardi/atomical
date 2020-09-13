@@ -16,6 +16,18 @@ export function createMainTemplate(fullDays, shortDays, initialDays) {
   return template;
 }
 
+export function createEvent(event) {
+  const startTime = event.start.getHours();
+  const startTimeString =
+    startTime > 12 ? `${startTime - 12}p` : `${startTime}a`;
+
+  return `
+    <div class="dot"></div>
+    <div class="time">${startTimeString}</div>
+    <div class="name">${event.name}</div>
+  `;
+}
+
 function createDays(days) {
   return days.map(day => `<div class="dayHeader">${day}</div>`).join('');
 }

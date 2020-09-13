@@ -133,12 +133,28 @@
 }
 
 .event {
-  background: blue;
-  color: white;
   height: 1rem;
   padding: 0.25rem;
   top: 2rem;
   position: relative;
-  margin: 0.25rem;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.event .dot {
+  background: blue;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+}
+
+.event .time {
+  margin-right: 0.25rem;
+}
+
+.event .name {
+  font-weight: bold;
 }

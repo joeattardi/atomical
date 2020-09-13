@@ -10,7 +10,9 @@ import { createMainTemplate } from './templates';
 import {
   empty,
   getSizeClass,
+  getDateFormat,
   createDay,
+  createEvent,
   createPlaceholder,
   increment
 } from './util';
@@ -22,6 +24,11 @@ const mainTemplate = createMainTemplate(
 );
 
 export class Calendar extends HTMLElement {
+  constructor() {
+    super();
+    this.eventDays = {};
+  }
+
   connectedCallback() {
     const styleEl = document.createElement('style');
     styleEl.textContent = styles;
@@ -73,6 +80,16 @@ export class Calendar extends HTMLElement {
 
     for (let i = 1; i <= daysInMonth; i++) {
       this.gridEl.appendChild(createDay(i, month, year, row, column));
+
+      const dateFormat = getDateFormat(new Date(year, month, i));
+      const eventsInDay = this.eventDays[dateFormat];
+
+      if (eventsInDay && eventsInDay.length) {
+        eventsInDay.forEach((event, i) => {
+          this.gridEl.appendChild(createEvent(event, i, row, column));
+        });
+      }
+
       [row, column] = increment(row, column);
     }
 
@@ -80,21 +97,6 @@ export class Calendar extends HTMLElement {
       this.gridEl.appendChild(createPlaceholder(row, column));
       [row, column] = increment(row, column);
     }
-
-    // const event = document.createElement('div');
-    // event.innerHTML = 'Sales Meeting';
-    // event.className = 'event';
-    // event.style.gridRow = '2';
-    // event.style.gridColumn = '2 / span 2';
-    // this.gridEl.appendChild(event);
-
-    // const event2 = document.createElement('div');
-    // event2.innerHTML = 'HR Meeting';
-    // event2.className = 'event';
-    // event2.style.gridRow = '2';
-    // event2.style.gridColumn = '2';
-    // event2.style.top = '3.75rem';
-    // this.gridEl.appendChild(event2);
 
     this.isRendered = true;
   }
@@ -114,6 +116,17 @@ export class Calendar extends HTMLElement {
     if (this.isRendered) {
       this.render();
     }
+  }
+
+  addEvent(event) {
+    const dateFormat = getDateFormat(event.start);
+    if (!this.eventDays[dateFormat]) {
+      this.eventDays[dateFormat] = [];
+    }
+
+    this.eventDays[dateFormat].push(event);
+
+    this.render();
   }
 
   static get observedAttributes() {

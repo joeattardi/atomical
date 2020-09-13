@@ -5,9 +5,31 @@
   </head>
   <body>
     <h1>Atomical</h1>
-    <atomical-calendar></atomical-calendar>
+    <atomical-calendar month="8" year="2020"></atomical-calendar>
     <script type="module">
       import '../dist/atomical.js';
+
+      const calendar = document.querySelector('atomical-calendar');
+      calendar.addEvent({
+        name: 'Sales Meeting',
+        start: new Date(2020, 8, 14, 13),
+        end: new Date(2020, 8, 14, 14)
+      });
+      calendar.addEvent({
+        name: 'Sales Call',
+        start: new Date(2020, 8, 14, 15),
+        end: new Date(2020, 8, 14, 16)
+      });
+      calendar.addEvent({
+        name: 'Sales Meeting',
+        start: new Date(2020, 8, 21, 13),
+        end: new Date(2020, 8, 21, 14)
+      });
+      calendar.addEvent({
+        name: 'Sales Meeting',
+        start: new Date(2020, 5, 20, 13),
+        end: new Date(2020, 5, 20, 14)
+      });
     </script>
   </body>
 </html>

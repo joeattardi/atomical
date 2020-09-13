@@ -29,6 +29,27 @@ export function createDay(day, month, year, row, column) {
   return dayEl;
 }
 
+export function createEvent(event, index, row, column) {
+  const startTime = event.start.getHours();
+  const startTimeString =
+    startTime > 12 ? `${startTime - 12}p` : `${startTime}a`;
+
+  const eventEl = document.createElement('div');
+  eventEl.className = 'event';
+  eventEl.innerHTML = `
+    <div class="dot"></div>
+    <div class="time">${startTimeString}</div>
+    <div class="name">${event.name}</div>
+  `;
+
+  eventEl.style.gridRow = row.toString();
+  eventEl.style.gridColumn = column.toString();
+
+  const topOffset = 2 + index * 1.5;
+  eventEl.style.top = `${topOffset}rem`;
+
+  return eventEl;
+}
 export function isToday(date, month, year) {
   const today = new Date();
   return (
@@ -77,4 +98,11 @@ export function increment(row, column) {
   }
 
   return [resultRow, resultColumn];
+}
+
+export function getDateFormat(date) {
+  return `${date.getFullYear()}-${zeroPad(date.getMonth() + 1, 2)}-${zeroPad(
+    date.getDate(),
+    2
+  )}`;
 }
