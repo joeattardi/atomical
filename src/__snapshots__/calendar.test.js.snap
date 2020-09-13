@@ -101,16 +101,16 @@ exports[`Atomical Calendar should display the current month and year 1`] = `
   gap: 1px;
 }
 
-.grid > div {
+.grid > .day {
   display: grid;
   background: var(--calendar-background);
 }
 
-.grid > div > div {
+.grid > .day > div {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.grid > div::before {
+.grid > .day::before {
   content: '';
   padding-bottom: 100%;
   display: block;
@@ -134,7 +134,17 @@ exports[`Atomical Calendar should display the current month and year 1`] = `
 .grid .day.today {
   background: var(--today-background);
 }
-</style>
+
+.event {
+  background: blue;
+  color: white;
+  height: 1rem;
+  padding: 0.25rem;
+  top: 2rem;
+  position: relative;
+  margin: 0.25rem;
+  border-radius: 5px;
+}</style>
     <div class=\\"calendar large\\">
       <div class=\\"header\\">
         <h2><span class=\\"month\\">September</span> <span class=\\"year\\">2020</span></h2>
@@ -142,7 +152,7 @@ exports[`Atomical Calendar should display the current month and year 1`] = `
       <div class=\\"days daysLarge\\"><div class=\\"dayHeader\\">Sunday</div><div class=\\"dayHeader\\">Monday</div><div class=\\"dayHeader\\">Tuesday</div><div class=\\"dayHeader\\">Wednesday</div><div class=\\"dayHeader\\">Thursday</div><div class=\\"dayHeader\\">Friday</div><div class=\\"dayHeader\\">Saturday</div></div>
       <div class=\\"days daysMedium\\"><div class=\\"dayHeader\\">Sun</div><div class=\\"dayHeader\\">Mon</div><div class=\\"dayHeader\\">Tue</div><div class=\\"dayHeader\\">Wed</div><div class=\\"dayHeader\\">Thu</div><div class=\\"dayHeader\\">Fri</div><div class=\\"dayHeader\\">Sat</div></div>
       <div class=\\"days daysSmall\\"><div class=\\"dayHeader\\">S</div><div class=\\"dayHeader\\">M</div><div class=\\"dayHeader\\">T</div><div class=\\"dayHeader\\">W</div><div class=\\"dayHeader\\">T</div><div class=\\"dayHeader\\">F</div><div class=\\"dayHeader\\">S</div></div>
-      <div class=\\"grid\\"><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div><div class=\\"day\\" data-date=\\"2020-09-01\\"><div>1</div></div><div class=\\"day\\" data-date=\\"2020-09-02\\"><div>2</div></div><div class=\\"day\\" data-date=\\"2020-09-03\\"><div>3</div></div><div class=\\"day\\" data-date=\\"2020-09-04\\"><div>4</div></div><div class=\\"day\\" data-date=\\"2020-09-05\\"><div>5</div></div><div class=\\"day\\" data-date=\\"2020-09-06\\"><div>6</div></div><div class=\\"day\\" data-date=\\"2020-09-07\\"><div>7</div></div><div class=\\"day\\" data-date=\\"2020-09-08\\"><div>8</div></div><div class=\\"day\\" data-date=\\"2020-09-09\\"><div>9</div></div><div class=\\"day\\" data-date=\\"2020-09-10\\"><div>10</div></div><div class=\\"day today\\" data-date=\\"2020-09-11\\"><div>11</div></div><div class=\\"day\\" data-date=\\"2020-09-12\\"><div>12</div></div><div class=\\"day\\" data-date=\\"2020-09-13\\"><div>13</div></div><div class=\\"day\\" data-date=\\"2020-09-14\\"><div>14</div></div><div class=\\"day\\" data-date=\\"2020-09-15\\"><div>15</div></div><div class=\\"day\\" data-date=\\"2020-09-16\\"><div>16</div></div><div class=\\"day\\" data-date=\\"2020-09-17\\"><div>17</div></div><div class=\\"day\\" data-date=\\"2020-09-18\\"><div>18</div></div><div class=\\"day\\" data-date=\\"2020-09-19\\"><div>19</div></div><div class=\\"day\\" data-date=\\"2020-09-20\\"><div>20</div></div><div class=\\"day\\" data-date=\\"2020-09-21\\"><div>21</div></div><div class=\\"day\\" data-date=\\"2020-09-22\\"><div>22</div></div><div class=\\"day\\" data-date=\\"2020-09-23\\"><div>23</div></div><div class=\\"day\\" data-date=\\"2020-09-24\\"><div>24</div></div><div class=\\"day\\" data-date=\\"2020-09-25\\"><div>25</div></div><div class=\\"day\\" data-date=\\"2020-09-26\\"><div>26</div></div><div class=\\"day\\" data-date=\\"2020-09-27\\"><div>27</div></div><div class=\\"day\\" data-date=\\"2020-09-28\\"><div>28</div></div><div class=\\"day\\" data-date=\\"2020-09-29\\"><div>29</div></div><div class=\\"day\\" data-date=\\"2020-09-30\\"><div>30</div></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div></div>
+      <div class=\\"grid\\"><div class=\\"placeholder\\" style=\\"grid-row: 1; grid-column: 1;\\"></div><div class=\\"placeholder\\" style=\\"grid-row: 1; grid-column: 2;\\"></div><div class=\\"day\\" data-date=\\"2020-09-01\\" style=\\"grid-row: 1; grid-column: 3;\\"><div>1</div></div><div class=\\"day\\" data-date=\\"2020-09-02\\" style=\\"grid-row: 1; grid-column: 4;\\"><div>2</div></div><div class=\\"day\\" data-date=\\"2020-09-03\\" style=\\"grid-row: 1; grid-column: 5;\\"><div>3</div></div><div class=\\"day\\" data-date=\\"2020-09-04\\" style=\\"grid-row: 1; grid-column: 6;\\"><div>4</div></div><div class=\\"day\\" data-date=\\"2020-09-05\\" style=\\"grid-row: 1; grid-column: 7;\\"><div>5</div></div><div class=\\"day\\" data-date=\\"2020-09-06\\" style=\\"grid-row: 2; grid-column: 1;\\"><div>6</div></div><div class=\\"day\\" data-date=\\"2020-09-07\\" style=\\"grid-row: 2; grid-column: 2;\\"><div>7</div></div><div class=\\"day\\" data-date=\\"2020-09-08\\" style=\\"grid-row: 2; grid-column: 3;\\"><div>8</div></div><div class=\\"day\\" data-date=\\"2020-09-09\\" style=\\"grid-row: 2; grid-column: 4;\\"><div>9</div></div><div class=\\"day\\" data-date=\\"2020-09-10\\" style=\\"grid-row: 2; grid-column: 5;\\"><div>10</div></div><div class=\\"day\\" data-date=\\"2020-09-11\\" style=\\"grid-row: 2; grid-column: 6;\\"><div>11</div></div><div class=\\"day today\\" data-date=\\"2020-09-12\\" style=\\"grid-row: 2; grid-column: 7;\\"><div>12</div></div><div class=\\"day\\" data-date=\\"2020-09-13\\" style=\\"grid-row: 3; grid-column: 1;\\"><div>13</div></div><div class=\\"day\\" data-date=\\"2020-09-14\\" style=\\"grid-row: 3; grid-column: 2;\\"><div>14</div></div><div class=\\"day\\" data-date=\\"2020-09-15\\" style=\\"grid-row: 3; grid-column: 3;\\"><div>15</div></div><div class=\\"day\\" data-date=\\"2020-09-16\\" style=\\"grid-row: 3; grid-column: 4;\\"><div>16</div></div><div class=\\"day\\" data-date=\\"2020-09-17\\" style=\\"grid-row: 3; grid-column: 5;\\"><div>17</div></div><div class=\\"day\\" data-date=\\"2020-09-18\\" style=\\"grid-row: 3; grid-column: 6;\\"><div>18</div></div><div class=\\"day\\" data-date=\\"2020-09-19\\" style=\\"grid-row: 3; grid-column: 7;\\"><div>19</div></div><div class=\\"day\\" data-date=\\"2020-09-20\\" style=\\"grid-row: 4; grid-column: 1;\\"><div>20</div></div><div class=\\"day\\" data-date=\\"2020-09-21\\" style=\\"grid-row: 4; grid-column: 2;\\"><div>21</div></div><div class=\\"day\\" data-date=\\"2020-09-22\\" style=\\"grid-row: 4; grid-column: 3;\\"><div>22</div></div><div class=\\"day\\" data-date=\\"2020-09-23\\" style=\\"grid-row: 4; grid-column: 4;\\"><div>23</div></div><div class=\\"day\\" data-date=\\"2020-09-24\\" style=\\"grid-row: 4; grid-column: 5;\\"><div>24</div></div><div class=\\"day\\" data-date=\\"2020-09-25\\" style=\\"grid-row: 4; grid-column: 6;\\"><div>25</div></div><div class=\\"day\\" data-date=\\"2020-09-26\\" style=\\"grid-row: 4; grid-column: 7;\\"><div>26</div></div><div class=\\"day\\" data-date=\\"2020-09-27\\" style=\\"grid-row: 5; grid-column: 1;\\"><div>27</div></div><div class=\\"day\\" data-date=\\"2020-09-28\\" style=\\"grid-row: 5; grid-column: 2;\\"><div>28</div></div><div class=\\"day\\" data-date=\\"2020-09-29\\" style=\\"grid-row: 5; grid-column: 3;\\"><div>29</div></div><div class=\\"day\\" data-date=\\"2020-09-30\\" style=\\"grid-row: 5; grid-column: 4;\\"><div>30</div></div><div class=\\"placeholder\\" style=\\"grid-row: 5; grid-column: 5;\\"></div><div class=\\"placeholder\\" style=\\"grid-row: 5; grid-column: 6;\\"></div><div class=\\"placeholder\\" style=\\"grid-row: 5; grid-column: 7;\\"></div></div>
     </div>
   "
 `;
@@ -248,16 +258,16 @@ exports[`Atomical Calendar should display the specified month and year 1`] = `
   gap: 1px;
 }
 
-.grid > div {
+.grid > .day {
   display: grid;
   background: var(--calendar-background);
 }
 
-.grid > div > div {
+.grid > .day > div {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.grid > div::before {
+.grid > .day::before {
   content: '';
   padding-bottom: 100%;
   display: block;
@@ -281,7 +291,17 @@ exports[`Atomical Calendar should display the specified month and year 1`] = `
 .grid .day.today {
   background: var(--today-background);
 }
-</style>
+
+.event {
+  background: blue;
+  color: white;
+  height: 1rem;
+  padding: 0.25rem;
+  top: 2rem;
+  position: relative;
+  margin: 0.25rem;
+  border-radius: 5px;
+}</style>
     <div class=\\"calendar large\\">
       <div class=\\"header\\">
         <h2><span class=\\"month\\">June</span> <span class=\\"year\\">2020</span></h2>
@@ -289,7 +309,7 @@ exports[`Atomical Calendar should display the specified month and year 1`] = `
       <div class=\\"days daysLarge\\"><div class=\\"dayHeader\\">Sunday</div><div class=\\"dayHeader\\">Monday</div><div class=\\"dayHeader\\">Tuesday</div><div class=\\"dayHeader\\">Wednesday</div><div class=\\"dayHeader\\">Thursday</div><div class=\\"dayHeader\\">Friday</div><div class=\\"dayHeader\\">Saturday</div></div>
       <div class=\\"days daysMedium\\"><div class=\\"dayHeader\\">Sun</div><div class=\\"dayHeader\\">Mon</div><div class=\\"dayHeader\\">Tue</div><div class=\\"dayHeader\\">Wed</div><div class=\\"dayHeader\\">Thu</div><div class=\\"dayHeader\\">Fri</div><div class=\\"dayHeader\\">Sat</div></div>
       <div class=\\"days daysSmall\\"><div class=\\"dayHeader\\">S</div><div class=\\"dayHeader\\">M</div><div class=\\"dayHeader\\">T</div><div class=\\"dayHeader\\">W</div><div class=\\"dayHeader\\">T</div><div class=\\"dayHeader\\">F</div><div class=\\"dayHeader\\">S</div></div>
-      <div class=\\"grid\\"><div class=\\"placeholder\\"></div><div class=\\"day\\" data-date=\\"2020-06-01\\"><div>1</div></div><div class=\\"day\\" data-date=\\"2020-06-02\\"><div>2</div></div><div class=\\"day\\" data-date=\\"2020-06-03\\"><div>3</div></div><div class=\\"day\\" data-date=\\"2020-06-04\\"><div>4</div></div><div class=\\"day\\" data-date=\\"2020-06-05\\"><div>5</div></div><div class=\\"day\\" data-date=\\"2020-06-06\\"><div>6</div></div><div class=\\"day\\" data-date=\\"2020-06-07\\"><div>7</div></div><div class=\\"day\\" data-date=\\"2020-06-08\\"><div>8</div></div><div class=\\"day\\" data-date=\\"2020-06-09\\"><div>9</div></div><div class=\\"day\\" data-date=\\"2020-06-10\\"><div>10</div></div><div class=\\"day\\" data-date=\\"2020-06-11\\"><div>11</div></div><div class=\\"day\\" data-date=\\"2020-06-12\\"><div>12</div></div><div class=\\"day\\" data-date=\\"2020-06-13\\"><div>13</div></div><div class=\\"day\\" data-date=\\"2020-06-14\\"><div>14</div></div><div class=\\"day\\" data-date=\\"2020-06-15\\"><div>15</div></div><div class=\\"day\\" data-date=\\"2020-06-16\\"><div>16</div></div><div class=\\"day\\" data-date=\\"2020-06-17\\"><div>17</div></div><div class=\\"day\\" data-date=\\"2020-06-18\\"><div>18</div></div><div class=\\"day\\" data-date=\\"2020-06-19\\"><div>19</div></div><div class=\\"day\\" data-date=\\"2020-06-20\\"><div>20</div></div><div class=\\"day\\" data-date=\\"2020-06-21\\"><div>21</div></div><div class=\\"day\\" data-date=\\"2020-06-22\\"><div>22</div></div><div class=\\"day\\" data-date=\\"2020-06-23\\"><div>23</div></div><div class=\\"day\\" data-date=\\"2020-06-24\\"><div>24</div></div><div class=\\"day\\" data-date=\\"2020-06-25\\"><div>25</div></div><div class=\\"day\\" data-date=\\"2020-06-26\\"><div>26</div></div><div class=\\"day\\" data-date=\\"2020-06-27\\"><div>27</div></div><div class=\\"day\\" data-date=\\"2020-06-28\\"><div>28</div></div><div class=\\"day\\" data-date=\\"2020-06-29\\"><div>29</div></div><div class=\\"day\\" data-date=\\"2020-06-30\\"><div>30</div></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div><div class=\\"placeholder\\"></div></div>
+      <div class=\\"grid\\"><div class=\\"placeholder\\" style=\\"grid-row: 1; grid-column: 1;\\"></div><div class=\\"day\\" data-date=\\"2020-06-01\\" style=\\"grid-row: 1; grid-column: 2;\\"><div>1</div></div><div class=\\"day\\" data-date=\\"2020-06-02\\" style=\\"grid-row: 1; grid-column: 3;\\"><div>2</div></div><div class=\\"day\\" data-date=\\"2020-06-03\\" style=\\"grid-row: 1; grid-column: 4;\\"><div>3</div></div><div class=\\"day\\" data-date=\\"2020-06-04\\" style=\\"grid-row: 1; grid-column: 5;\\"><div>4</div></div><div class=\\"day\\" data-date=\\"2020-06-05\\" style=\\"grid-row: 1; grid-column: 6;\\"><div>5</div></div><div class=\\"day\\" data-date=\\"2020-06-06\\" style=\\"grid-row: 1; grid-column: 7;\\"><div>6</div></div><div class=\\"day\\" data-date=\\"2020-06-07\\" style=\\"grid-row: 2; grid-column: 1;\\"><div>7</div></div><div class=\\"day\\" data-date=\\"2020-06-08\\" style=\\"grid-row: 2; grid-column: 2;\\"><div>8</div></div><div class=\\"day\\" data-date=\\"2020-06-09\\" style=\\"grid-row: 2; grid-column: 3;\\"><div>9</div></div><div class=\\"day\\" data-date=\\"2020-06-10\\" style=\\"grid-row: 2; grid-column: 4;\\"><div>10</div></div><div class=\\"day\\" data-date=\\"2020-06-11\\" style=\\"grid-row: 2; grid-column: 5;\\"><div>11</div></div><div class=\\"day\\" data-date=\\"2020-06-12\\" style=\\"grid-row: 2; grid-column: 6;\\"><div>12</div></div><div class=\\"day\\" data-date=\\"2020-06-13\\" style=\\"grid-row: 2; grid-column: 7;\\"><div>13</div></div><div class=\\"day\\" data-date=\\"2020-06-14\\" style=\\"grid-row: 3; grid-column: 1;\\"><div>14</div></div><div class=\\"day\\" data-date=\\"2020-06-15\\" style=\\"grid-row: 3; grid-column: 2;\\"><div>15</div></div><div class=\\"day\\" data-date=\\"2020-06-16\\" style=\\"grid-row: 3; grid-column: 3;\\"><div>16</div></div><div class=\\"day\\" data-date=\\"2020-06-17\\" style=\\"grid-row: 3; grid-column: 4;\\"><div>17</div></div><div class=\\"day\\" data-date=\\"2020-06-18\\" style=\\"grid-row: 3; grid-column: 5;\\"><div>18</div></div><div class=\\"day\\" data-date=\\"2020-06-19\\" style=\\"grid-row: 3; grid-column: 6;\\"><div>19</div></div><div class=\\"day\\" data-date=\\"2020-06-20\\" style=\\"grid-row: 3; grid-column: 7;\\"><div>20</div></div><div class=\\"day\\" data-date=\\"2020-06-21\\" style=\\"grid-row: 4; grid-column: 1;\\"><div>21</div></div><div class=\\"day\\" data-date=\\"2020-06-22\\" style=\\"grid-row: 4; grid-column: 2;\\"><div>22</div></div><div class=\\"day\\" data-date=\\"2020-06-23\\" style=\\"grid-row: 4; grid-column: 3;\\"><div>23</div></div><div class=\\"day\\" data-date=\\"2020-06-24\\" style=\\"grid-row: 4; grid-column: 4;\\"><div>24</div></div><div class=\\"day\\" data-date=\\"2020-06-25\\" style=\\"grid-row: 4; grid-column: 5;\\"><div>25</div></div><div class=\\"day\\" data-date=\\"2020-06-26\\" style=\\"grid-row: 4; grid-column: 6;\\"><div>26</div></div><div class=\\"day\\" data-date=\\"2020-06-27\\" style=\\"grid-row: 4; grid-column: 7;\\"><div>27</div></div><div class=\\"day\\" data-date=\\"2020-06-28\\" style=\\"grid-row: 5; grid-column: 1;\\"><div>28</div></div><div class=\\"day\\" data-date=\\"2020-06-29\\" style=\\"grid-row: 5; grid-column: 2;\\"><div>29</div></div><div class=\\"day\\" data-date=\\"2020-06-30\\" style=\\"grid-row: 5; grid-column: 3;\\"><div>30</div></div><div class=\\"placeholder\\" style=\\"grid-row: 5; grid-column: 4;\\"></div><div class=\\"placeholder\\" style=\\"grid-row: 5; grid-column: 5;\\"></div><div class=\\"placeholder\\" style=\\"grid-row: 5; grid-column: 6;\\"></div><div class=\\"placeholder\\" style=\\"grid-row: 5; grid-column: 7;\\"></div></div>
     </div>
   "
 `;

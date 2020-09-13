@@ -98,16 +98,16 @@
   gap: 1px;
 }
 
-.grid > div {
+.grid > .day {
   display: grid;
   background: var(--calendar-background);
 }
 
-.grid > div > div {
+.grid > .day > div {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.grid > div::before {
+.grid > .day::before {
   content: '';
   padding-bottom: 100%;
   display: block;
@@ -130,4 +130,15 @@
 
 .grid .day.today {
   background: var(--today-background);
+}
+
+.event {
+  background: blue;
+  color: white;
+  height: 1rem;
+  padding: 0.25rem;
+  top: 2rem;
+  position: relative;
+  margin: 0.25rem;
+  border-radius: 5px;
 }

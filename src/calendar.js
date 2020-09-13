@@ -7,7 +7,13 @@ import {
   initialDayNames
 } from './strings';
 import { createMainTemplate } from './templates';
-import { empty, getSizeClass, createDay, createPlaceholder } from './util';
+import {
+  empty,
+  getSizeClass,
+  createDay,
+  createPlaceholder,
+  increment
+} from './util';
 
 const mainTemplate = createMainTemplate(
   fullDayNames,
@@ -49,22 +55,46 @@ export class Calendar extends HTMLElement {
     const firstWeekday = firstDay.getDay();
     const lastWeekday = lastDay.getDay();
 
+    const leadingPlaceholderCount = firstWeekday;
+    const trailingPlaceholderCount = fullDayNames.length - 1 - lastWeekday;
+
     this.monthEl.textContent = months[month];
     this.yearEl.textContent = year;
 
     empty(this.gridEl);
 
-    for (let i = 0; i < firstWeekday; i++) {
-      this.gridEl.appendChild(createPlaceholder());
+    let row = 1;
+    let column = 1;
+
+    for (let i = 0; i < leadingPlaceholderCount; i++) {
+      this.gridEl.appendChild(createPlaceholder(row, column));
+      [row, column] = increment(row, column);
     }
 
     for (let i = 1; i <= daysInMonth; i++) {
-      this.gridEl.appendChild(createDay(i, month, year));
+      this.gridEl.appendChild(createDay(i, month, year, row, column));
+      [row, column] = increment(row, column);
     }
 
-    for (let i = 0; i < fullDayNames.length - 1 - lastWeekday; i++) {
-      this.gridEl.appendChild(createPlaceholder());
+    for (let i = 0; i < trailingPlaceholderCount; i++) {
+      this.gridEl.appendChild(createPlaceholder(row, column));
+      [row, column] = increment(row, column);
     }
+
+    // const event = document.createElement('div');
+    // event.innerHTML = 'Sales Meeting';
+    // event.className = 'event';
+    // event.style.gridRow = '2';
+    // event.style.gridColumn = '2 / span 2';
+    // this.gridEl.appendChild(event);
+
+    // const event2 = document.createElement('div');
+    // event2.innerHTML = 'HR Meeting';
+    // event2.className = 'event';
+    // event2.style.gridRow = '2';
+    // event2.style.gridColumn = '2';
+    // event2.style.top = '3.75rem';
+    // this.gridEl.appendChild(event2);
 
     this.isRendered = true;
   }

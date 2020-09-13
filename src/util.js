@@ -2,14 +2,17 @@ const SIZE_LARGE = 'large';
 const SIZE_MEDIUM = 'medium';
 const SIZE_SMALL = 'small';
 
-export function createPlaceholder() {
+export function createPlaceholder(row, column) {
   const placeholder = document.createElement('div');
   placeholder.className = 'placeholder';
+
+  placeholder.style.gridRow = row.toString();
+  placeholder.style.gridColumn = column.toString();
 
   return placeholder;
 }
 
-export function createDay(day, month, year) {
+export function createDay(day, month, year, row, column) {
   const dayEl = document.createElement('div');
 
   dayEl.classList.add('day');
@@ -19,6 +22,9 @@ export function createDay(day, month, year) {
 
   dayEl.innerHTML = `<div>${day}</div>`;
   dayEl.dataset.date = `${year}-${zeroPad(month + 1, 2)}-${zeroPad(day, 2)}`;
+
+  dayEl.style.gridRow = row.toString();
+  dayEl.style.gridColumn = column.toString();
 
   return dayEl;
 }
@@ -59,4 +65,16 @@ export function empty(element) {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
+}
+
+export function increment(row, column) {
+  let resultColumn = column + 1;
+  let resultRow = row;
+
+  if (resultColumn > 7) {
+    resultRow++;
+    resultColumn = 1;
+  }
+
+  return [resultRow, resultColumn];
 }

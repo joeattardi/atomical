@@ -3,7 +3,7 @@ import { createDay, createPlaceholder, isToday, zeroPad } from './util';
 describe('Utils', () => {
   describe('createDay', () => {
     test('should create an element for the given day', () => {
-      const day = createDay(2, 5, 1981);
+      const day = createDay(2, 5, 1981, 1, 1);
 
       expect(day.tagName.toLowerCase()).toBe('div');
       expect(day.classList).toContain('day');
@@ -17,7 +17,9 @@ describe('Utils', () => {
       const day = createDay(
         today.getDate(),
         today.getMonth(),
-        today.getFullYear()
+        today.getFullYear(),
+        1,
+        1
       );
 
       expect(day.classList).toContain('today');
@@ -26,7 +28,7 @@ describe('Utils', () => {
 
   describe('createPlaceholder', () => {
     test('should create a placeholder element', () => {
-      const placeholder = createPlaceholder();
+      const placeholder = createPlaceholder(1, 1);
       expect(placeholder.tagName.toLowerCase()).toEqual('div');
       expect(placeholder.classList).toContain('placeholder');
     });
